@@ -1,0 +1,46 @@
+# Baseline Models Configuration
+
+experiment_name: baseline_models
+random_state: 42
+
+data:
+  path: data/processed
+  train_file: train.csv
+  val_file: val.csv
+  test_file: test.csv
+  target_column: Class
+
+models:
+  logistic_regression:
+    max_iter: 1000
+    solver: lbfgs
+    class_weight: null
+
+  decision_tree:
+    max_depth: 10
+    min_samples_split: 20
+    min_samples_leaf: 10
+    class_weight: null
+
+  random_forest:
+    n_estimators: 100
+    max_depth: 10
+    min_samples_split: 20
+    min_samples_leaf: 10
+    n_jobs: -1
+    class_weight: null
+
+evaluation:
+  metrics:
+    - pr_auc
+    - roc_auc
+    - f1_score
+    - precision
+    - recall
+  cv_folds: 5
+  stratify: true
+
+output:
+  models_dir: models/baseline
+  results_dir: results/baseline
+  mlflow_experiment: baseline_models

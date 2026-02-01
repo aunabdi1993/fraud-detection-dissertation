@@ -1,0 +1,55 @@
+# Ensemble Methods Configuration
+
+experiment_name: ensemble_models
+random_state: 42
+
+data:
+  path: data/processed
+  train_file: train.csv
+  val_file: val.csv
+  test_file: test.csv
+  target_column: Class
+
+models:
+  balanced_random_forest:
+    n_estimators: 100
+    max_depth: 10
+    n_jobs: -1
+
+  easy_ensemble:
+    n_estimators: 10
+    n_jobs: -1
+
+  rus_boost:
+    n_estimators: 100
+
+  xgboost:
+    n_estimators: 100
+    max_depth: 6
+    learning_rate: 0.1
+    scale_pos_weight: 577  # Approximate class imbalance ratio
+    eval_metric: logloss
+
+  lightgbm:
+    n_estimators: 100
+    max_depth: 6
+    learning_rate: 0.1
+    is_unbalance: true
+    verbose: -1
+
+evaluation:
+  metrics:
+    - pr_auc
+    - roc_auc
+    - f1_score
+    - precision
+    - recall
+  cv_folds: 5
+  stratify: true
+  measure_latency: true
+  measure_memory: true
+
+output:
+  models_dir: models/ensemble
+  results_dir: results/ensemble
+  mlflow_experiment: ensemble_models

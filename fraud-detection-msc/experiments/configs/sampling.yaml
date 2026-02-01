@@ -1,0 +1,49 @@
+# Sampling Techniques Configuration
+
+experiment_name: sampling_comparison
+random_state: 42
+
+data:
+  path: data/processed
+  train_file: train.csv
+  val_file: val.csv
+  test_file: test.csv
+  target_column: Class
+
+sampling_methods:
+  random_undersample:
+    strategy: auto
+
+  random_oversample:
+    strategy: auto
+
+  smote:
+    strategy: auto
+    k_neighbors: 5
+
+  adasyn:
+    strategy: auto
+    n_neighbors: 5
+
+  smote_tomek:
+    strategy: auto
+
+base_models:
+  - logistic_regression
+  - random_forest
+  - xgboost
+
+evaluation:
+  metrics:
+    - pr_auc
+    - roc_auc
+    - f1_score
+    - precision
+    - recall
+  cv_folds: 5
+  stratify: true
+
+output:
+  models_dir: models/sampling
+  results_dir: results/sampling
+  mlflow_experiment: sampling_comparison
