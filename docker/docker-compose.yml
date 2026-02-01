@@ -3,8 +3,8 @@ version: '3.8'
 services:
   api:
     build:
-      context: ..
-      dockerfile: docker/Dockerfile
+      context: ../fraud-detection-msc
+      dockerfile: Dockerfile
     ports:
       - "8000:8000"
     environment:

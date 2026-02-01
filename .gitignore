@@ -31,7 +31,7 @@ ENV/
 *.ipynb_checkpoints/
 
 # Data (large files)
-data/raw/*
+data/raw/.gitkeep
 data/processed/*
 data/features/*
 !data/raw/.gitkeep
